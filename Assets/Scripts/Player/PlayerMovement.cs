@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D myRigidBody;
-    BoxCollider2D myCollider;
+    CapsuleCollider2D myCollider;
+    BoxCollider2D feetCollider;
+    private bool grounded;
+
     Animator myAnimator;
     private float moveInputX;
     [SerializeField] private float jumpSpeed;
@@ -14,8 +17,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        myCollider = GetComponent<BoxCollider2D>(); 
+        myCollider = GetComponent<CapsuleCollider2D>(); 
         myAnimator = GetComponent<Animator>();
+        feetCollider = GetComponent<BoxCollider2D>();
+        grounded = true;
     }
 
     void Update()
@@ -33,15 +38,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        if (!Input.GetKeyDown(KeyCode.Space)) return;
+        if (!Input.GetKeyDown(KeyCode.Space) || !grounded) return;
         myRigidBody.velocity += new Vector2(0f, jumpSpeed);
         myAnimator.SetBool("isJumping", true);
+        grounded = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
+            grounded = true;
             myAnimator.SetBool("isJumping", false);
         }
     }
