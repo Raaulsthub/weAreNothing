@@ -11,7 +11,7 @@ public class ObjectControler : MonoBehaviour
     {
         myCollider = GetComponent<Collider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
-        xVelocity = Random.Range(15f, 30f);
+        xVelocity = Random.Range(5f, 10f);
     }
 
     // Update is called once per frame
