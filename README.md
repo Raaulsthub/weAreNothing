@@ -1,2 +1,2 @@
-# weAreNothins
+# weAreNothing
 UFSM game Project
