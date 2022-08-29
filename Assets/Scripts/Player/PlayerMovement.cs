@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D feetCollider;
     private bool grounded;
 
+    private bool pulando;
+    private float tempoPulo;
+    public float puloQtd;
     Animator myAnimator;
     private float moveInputX;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float moveSpeed;
+    
 
     void Start()
     {
@@ -38,10 +42,28 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        if (!Input.GetKeyDown(KeyCode.Space) || !grounded) return;
-        myRigidBody.velocity += new Vector2(0f, jumpSpeed);
-        myAnimator.SetBool("isJumping", true);
-        grounded = false;
+        if(Input.GetKeyDown(KeyCode.Space) && grounded){
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
+            myAnimator.SetBool("isJumping", true);
+            grounded = false;
+
+            tempoPulo = puloQtd;
+            pulando = true;
+        }
+
+        if(Input.GetKey(KeyCode.Space) && pulando == true){
+            if(tempoPulo > 0){
+                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
+                tempoPulo -= Time.deltaTime;
+            }
+            else{
+                pulando = false;
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.Space)){
+            pulando = false;
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
