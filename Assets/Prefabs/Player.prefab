@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd716773ea55bed40ac4f4f4d2360ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puloQtd: 0.4
+  puloQtd: 0.3
   jumpSpeed: 3
   moveSpeed: 7
 --- !u!95 &-1789550940208161752

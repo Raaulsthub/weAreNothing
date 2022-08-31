@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
             pulando = true;
         }
 
+
         if(Input.GetKey(KeyCode.Space) && pulando == true){
             if(tempoPulo > 0){
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
