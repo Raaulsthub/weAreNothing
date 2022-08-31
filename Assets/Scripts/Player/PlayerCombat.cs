@@ -7,17 +7,23 @@ public class PlayerCombat : MonoBehaviour
     private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] float attackRange;
+    [SerializeField] private float attackRate = 2f;
+    private float nextAttackTime = 0f;
     public LayerMask enemyLayers;
+    public Transform transform;
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        transform = GetComponent<Transform>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.P))
         {
             Attack();
+            nextAttackTime = Time.time + 1f / attackRate;
         }
     }
 
@@ -29,11 +35,12 @@ public class PlayerCombat : MonoBehaviour
         // find enemies on attack 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemies)
+        // Damage enemies
+        foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<TestEnemyController>().takeHit(this);
         }
-        // Damage enemies
     }
 
 
