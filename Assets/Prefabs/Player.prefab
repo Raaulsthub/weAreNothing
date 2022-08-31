@@ -107,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -33913791
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -626466594, guid: 9753f31d36ec5354993bdc714090df5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd716773ea55bed40ac4f4f4d2360ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puloQtd: 0
-  jumpSpeed: 5
+  puloQtd: 0.4
+  jumpSpeed: 3
   moveSpeed: 7
 --- !u!95 &-1789550940208161752
 Animator:
@@ -207,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1374473057}
   attackRange: 1
+  attackRate: 2
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  transform: {fileID: 0}
