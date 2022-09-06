@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool pulando;
     private float tempoPulo;
     public float puloQtd;
+    private bool doubleJump;
     Animator myAnimator;
     private float moveInputX;
     [SerializeField] private float jumpSpeed;
@@ -27,10 +28,16 @@ public class PlayerMovement : MonoBehaviour
         grounded = true;
     }
 
+    void FixedUpdate(){
+        moveInputX = Input.GetAxisRaw("Horizontal");
+        if(Input.GetKey(KeyCode.LeftShift)){
+            moveInputX *= 1.5f;
+        }
+            
+        Run();
+    }
     void Update()
     {
-        moveInputX = Input.GetAxisRaw("Horizontal");
-        Run();
         Jump();
         FlipSprite();
     }
@@ -49,8 +56,16 @@ public class PlayerMovement : MonoBehaviour
 
             tempoPulo = puloQtd;
             pulando = true;
+            doubleJump = true;
         }
+        else if(Input.GetKeyDown(KeyCode.Space) && doubleJump){
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
+            myAnimator.SetBool("isJumping", true);
 
+            tempoPulo = puloQtd;
+            pulando = true;
+            doubleJump = false;
+        }
         if(Input.GetKey(KeyCode.Space) && pulando == true){
             if(tempoPulo > 0){
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
