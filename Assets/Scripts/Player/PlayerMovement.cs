@@ -35,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
         }
             
         Run();
+        Jump();
     }
     void Update()
     {
-        Jump();
         FlipSprite();
     }
 

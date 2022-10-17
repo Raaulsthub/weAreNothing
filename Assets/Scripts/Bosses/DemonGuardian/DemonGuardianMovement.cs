@@ -6,56 +6,54 @@ public class DemonGuardianMovement : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private BoxCollider2D collider;
+    private Animator animator;
+    private Transform transform;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
-    bool grounded = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>(); 
-
+        animator = GetComponent<Animator>();
+        transform = GetComponent<Transform>();
     }
 
     void FixedUpdate()
     {
         Run();
-        Jump();
     }
 
     // Update is called once per frame
     void Update()
     {
- 
+        FlipSprite();
     }
 
     private void Run()
     {
-        int RunDirection = 0;
+        int runDirection = 0;
         if (Input.GetKey(KeyCode.L))
-            RunDirection = 1;
-        else if (Input.GetKey(KeyCode.J))
-            RunDirection = -1;
-
-        rigidBody.velocity = new Vector2(moveSpeed * RunDirection, rigidBody.velocity.y);
-    }
-
-    private void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.I) && grounded)
-        {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
-            grounded = false;
+            runDirection = 1;
+        else if (Input.GetKey(KeyCode.J)) {
+            runDirection = -1;
         }
+
+        rigidBody.velocity = new Vector2(moveSpeed * runDirection, rigidBody.velocity.y);
+
+        if (runDirection == 0)
+            animator.SetBool("DemonGuardianWalking", false);
+        else animator.SetBool("DemonGuardianWalking", true);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void FlipSprite()
     {
-        if (collision.gameObject.tag == "Ground")
+        if (Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon)
         {
-            grounded = true;
+            transform.localScale = new Vector2(-Mathf.Sign(rigidBody.velocity.x), 1f);
         }
     }
 }
