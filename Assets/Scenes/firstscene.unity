@@ -46406,8 +46406,26 @@ MonoBehaviour:
   attackRate: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   transform: {fileID: 0}
+  power: 10
+  knockBackX: 10
+  knockBackY: 10
+--- !u!114 &1864504959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864504946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11c4bd022a765321b64233f4dcbe0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  knockBackX: 5
+  knockBackY: 5
 --- !u!1 &1877557410
 GameObject:
   m_ObjectHideFlags: 0
@@ -46567,6 +46585,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a73ab4916f6bd256b345cf30890cf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 50
+  rigidBody: {fileID: 1970849493}
+--- !u!50 &1970849493 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7876231775444929640, guid: 8d4c4bc1fbab05645aed19dae7efbf16, type: 3}
+  m_PrefabInstance: {fileID: 1369988704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1757737524842667841
 PrefabInstance:
   m_ObjectHideFlags: 0

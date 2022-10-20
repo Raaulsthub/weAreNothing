@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
     private float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public Transform transform;
-
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -39,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
-            enemy.GetComponent<TestEnemyController>().takeHit(this);
+            enemy.GetComponent<DemonGuardianInfo>().takeHit(this);
         }
     }
 

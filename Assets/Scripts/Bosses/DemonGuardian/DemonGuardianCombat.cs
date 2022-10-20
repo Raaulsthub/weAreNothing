@@ -11,9 +11,9 @@ public class DemonGuardianCombat : MonoBehaviour
     private float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public Transform transform;
-    [SerializeField] int power;
-    [SerializeField] int knockBackX;
-    [SerializeField] int knockBackY;
+    [SerializeField] public int power;
+    [SerializeField] public int knockBackX;
+    [SerializeField] public int knockBackY;
 
     void Start()
     {
@@ -42,6 +42,7 @@ public class DemonGuardianCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<PlayerInfo>().takeHit(power, transform, knockBackX, knockBackX);
             //enemy.GetComponent<PlayerInfo>.takeHit(power, transform, knockBackX, knockBackY);        
         }
     }
