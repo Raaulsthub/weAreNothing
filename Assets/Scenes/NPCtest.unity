@@ -751,6 +751,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3668569239506374344, guid: 82c2e8579a57d2f4c98ecc3981b90145, type: 3}
+      propertyPath: conversando
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3668569239506374347, guid: 82c2e8579a57d2f4c98ecc3981b90145, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -61,12 +61,15 @@ TagManager:
   - name: ground
     uniqueID: 2607924195
     locked: 0
-  - name: player
-    uniqueID: 4232062459
+  - name: tilemap2
+    uniqueID: 3609807163
+    locked: 0
+  - name: tilemap
+    uniqueID: 2739073015
     locked: 0
   - name: enemies
     uniqueID: 1570389867
     locked: 0
-  - name: tilemap
-    uniqueID: 2739073015
+  - name: player
+    uniqueID: 491820155
     locked: 0
