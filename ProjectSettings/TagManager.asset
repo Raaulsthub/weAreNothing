@@ -18,7 +18,7 @@ TagManager:
   - Background
   - Camera
   - ground
-  - 
+  - tilemap
   - 
   - 
   - 
@@ -66,4 +66,7 @@ TagManager:
     locked: 0
   - name: enemies
     uniqueID: 1570389867
+    locked: 0
+  - name: tilemap
+    uniqueID: 2739073015
     locked: 0

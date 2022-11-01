@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D myRigidBody;
+    
     CapsuleCollider2D myCollider;
     BoxCollider2D feetCollider;
     private bool grounded;
 
-    private bool pulando;
-    private float tempoPulo;
-    public float puloQtd;
+    private bool isJumping;
+    private float jumpTime;
+    public float jumpQuantity;
     private bool doubleJump;
     Animator myAnimator;
     private float moveInputX;
@@ -30,10 +31,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
         moveInputX = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             moveInputX *= 1.5f;
         }
-            
+
         Run();
         Jump();
     }
@@ -49,34 +51,34 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && grounded){
+        if(Input.GetKeyDown(KeyCode.Space) && (grounded || doubleJump)){
             myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
             myAnimator.SetBool("isJumping", true);
             grounded = false;
 
-            tempoPulo = puloQtd;
-            pulando = true;
+            jumpTime = jumpQuantity;
+            isJumping = true;
             doubleJump = true;
         }
         else if(Input.GetKeyDown(KeyCode.Space) && doubleJump){
             myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
             myAnimator.SetBool("isJumping", true);
 
-            tempoPulo = puloQtd;
-            pulando = true;
+            jumpTime = jumpQuantity;
+            isJumping = true;
             doubleJump = false;
         }
-        if(Input.GetKey(KeyCode.Space) && pulando == true){
-            if(tempoPulo > 0){
+        if(Input.GetKey(KeyCode.Space) && isJumping == true){
+            if(jumpTime > 0){
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpSpeed);
-                tempoPulo -= Time.deltaTime;
+                jumpTime -= Time.deltaTime;
             }
             else{
-                pulando = false;
+                isJumping = false;
             }
         }
         if(Input.GetKeyUp(KeyCode.Space)){
-            pulando = false;
+            isJumping = false;
         }
         
     }
