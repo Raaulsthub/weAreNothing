@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Destroyer
+  - FlyingEnemy
   layers:
   - Default
   - TransparentFX
