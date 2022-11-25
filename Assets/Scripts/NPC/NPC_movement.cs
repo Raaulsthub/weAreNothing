@@ -113,6 +113,30 @@ public class NPC_movement : MonoBehaviour
             zeroText();
         }
     }
+    
+
+     void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+        if(collision.gameObject.tag == "Player"){
+            playerClose = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = false;
+        }
+        if(collision.gameObject.tag == "Player"){
+            playerClose = false;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
